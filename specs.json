@@ -1,0 +1,22 @@
+{
+  "linkset": [
+    {
+      "href": "https://www.rfc-editor.org/rfc/rfc9264.html",
+      "type": "text/html",
+      "rel": "describedby",
+      "title": "Linkset: Media Types and a Link Relation Type for Link Sets"
+    },
+    {
+      "href": "https://www.rfc-editor.org/rfc/rfc8288.html",
+      "type": "text/html",
+      "rel": "describedby",
+      "title": "Web Linking"
+    },
+    {
+      "href": "https://www.iana.org/assignments/media-types/application/linkset+json",
+      "type": "text/html",
+      "rel": "related",
+      "title": "IANA Media Type Registration for application/linkset+json"
+    }
+  ]
+}
