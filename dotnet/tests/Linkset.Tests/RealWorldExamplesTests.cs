@@ -30,8 +30,8 @@ public class RealWorldExamplesTests
         var document = parser.Parse(json);
 
         // Assert
-        Assert.Equal(2, document.Linkset.Count);
-        Assert.All(document.Linkset, link =>
+        Assert.Equal(2, document.Linkset!.Count);
+        Assert.All(document.Linkset!, link =>
         {
             Assert.Equal("https://example.org/resource", link.Anchor);
             Assert.Equal("describedby", link.Rel);
@@ -70,7 +70,7 @@ public class RealWorldExamplesTests
         var document = parser.Parse(json);
 
         // Assert
-        Assert.Equal(3, document.Linkset.Count);
+        Assert.Equal(3, document.Linkset!.Count);
 
         var describedByLinks = document.GetLinksByRel("describedby");
         Assert.Equal(2, describedByLinks.Count);
@@ -112,7 +112,7 @@ public class RealWorldExamplesTests
         var document = parser.Parse(json);
 
         // Assert
-        Assert.Equal(3, document.Linkset.Count);
+        Assert.Equal(3, document.Linkset!.Count);
         Assert.Equal(2, document.GetLinksByRel("describedby").Count);
         Assert.Single(document.GetLinksByRel("related"));
     }
@@ -149,8 +149,8 @@ public class RealWorldExamplesTests
         var document = parser.Parse(json);
 
         // Assert
-        Assert.Equal(3, document.Linkset.Count);
-        Assert.All(document.Linkset, link => Assert.Equal("alternate", link.Rel));
+        Assert.Equal(3, document.Linkset!.Count);
+        Assert.All(document.Linkset!, link => Assert.Equal("alternate", link.Rel));
 
         var pdfLinks = document.GetLinksByType("application/pdf");
         Assert.Single(pdfLinks);
@@ -189,8 +189,8 @@ public class RealWorldExamplesTests
         var document = parser.Parse(json);
 
         // Assert
-        Assert.Equal(3, document.Linkset.Count);
-        var languages = document.Linkset.Select(l => l.Hreflang).ToList();
+        Assert.Equal(3, document.Linkset!.Count);
+        var languages = document.Linkset!.Select(l => l.Hreflang).ToList();
         Assert.Contains("en", languages);
         Assert.Contains("fr", languages);
         Assert.Contains("de", languages);
@@ -217,7 +217,7 @@ public class RealWorldExamplesTests
         var document = parser.Parse(json);
 
         // Assert
-        var link = document.Linkset[0];
+        var link = document.Linkset![0];
         Assert.Equal(52428800, link.Length);
         Assert.Equal("video/mp4", link.Type);
     }
@@ -283,7 +283,7 @@ public class RealWorldExamplesTests
         var document = parser.Parse(json);
 
         // Assert
-        Assert.Equal(3, document.Linkset.Count);
+        Assert.Equal(3, document.Linkset!.Count);
         var relationTypes = document.GetAllRelationTypes();
         Assert.Contains("license", relationTypes);
         Assert.Contains("author", relationTypes);

@@ -26,10 +26,10 @@ public class LinksetParserTests
         // Assert
         Assert.NotNull(document);
         Assert.Single(document.Linkset);
-        Assert.Equal("https://example.com", document.Linkset[0].Href);
-        Assert.Equal("describedby", document.Linkset[0].Rel);
-        Assert.Equal("text/html", document.Linkset[0].Type);
-        Assert.Equal("Example Link", document.Linkset[0].Title);
+        Assert.Equal("https://example.com", document.Linkset![0].Href);
+        Assert.Equal("describedby", document.Linkset![0].Rel);
+        Assert.Equal("text/html", document.Linkset![0].Type);
+        Assert.Equal("Example Link", document.Linkset![0].Title);
     }
 
     [Fact]
@@ -56,8 +56,8 @@ public class LinksetParserTests
         // Assert
         Assert.NotNull(document);
         Assert.Equal(2, document.Linkset.Count);
-        Assert.Equal("https://example.com/1", document.Linkset[0].Href);
-        Assert.Equal("https://example.com/2", document.Linkset[1].Href);
+        Assert.Equal("https://example.com/1", document.Linkset![0].Href);
+        Assert.Equal("https://example.com/2", document.Linkset![1].Href);
     }
 
     [Fact]
@@ -98,7 +98,8 @@ public class LinksetParserTests
         var document = parser.Parse(json);
 
         // Assert
-        var link = document.Linkset[0];
+        Assert.NotNull(document);
+        var link = document.Linkset![0];
         Assert.Equal("https://example.com/doc.pdf", link.Href);
         Assert.Equal("describedby", link.Rel);
         Assert.Equal("https://example.com/context", link.Anchor);
@@ -125,7 +126,8 @@ public class LinksetParserTests
         var document = parser.Parse(json);
 
         // Assert
-        var link = document.Linkset[0];
+        Assert.NotNull(document);
+        var link = document.Linkset![0];
         Assert.Equal("https://example.com", link.Href);
         Assert.Null(link.Rel);
         Assert.Null(link.Type);
@@ -256,7 +258,7 @@ public class LinksetParserTests
         var document = parser.Parse(json);
 
         // Assert
-        Assert.Equal("/relative/path", document.Linkset[0].Href);
+        Assert.Equal("/relative/path", document.Linkset![0].Href);
     }
 
     [Fact]
@@ -278,7 +280,7 @@ public class LinksetParserTests
 
         // Assert
         Assert.Single(document.Linkset);
-        Assert.Equal("https://example.com", document.Linkset[0].Href);
+        Assert.Equal("https://example.com", document.Linkset![0].Href);
     }
 
     [Fact]
@@ -341,7 +343,8 @@ public class LinksetParserTests
         var document = parser.Parse(json);
 
         // Assert
-        var link = document.Linkset[0];
+        Assert.NotNull(document);
+        var link = document.Linkset![0];
         Assert.NotNull(link.ExtensionData);
         Assert.True(link.ExtensionData.ContainsKey("customProperty"));
     }

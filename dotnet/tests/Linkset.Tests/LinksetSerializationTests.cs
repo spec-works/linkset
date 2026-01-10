@@ -153,8 +153,8 @@ public class LinksetSerializationTests
 
         // Assert
         Assert.NotNull(document);
-        Assert.Single(document.Linkset);
-        Assert.Equal("https://example.com", document.Linkset[0].Href);
+        Assert.Single(document.Linkset!);
+        Assert.Equal("https://example.com", document.Linkset![0].Href);
     }
 
     [Fact]

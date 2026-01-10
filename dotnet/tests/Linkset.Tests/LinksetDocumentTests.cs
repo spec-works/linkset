@@ -292,7 +292,7 @@ public class LinksetDocumentTests
         var document = new LinksetDocument();
 
         // Assert
-        Assert.Null(document.Linkset);
+        Assert.Null(document.Linkset!);
     }
 
     [Fact]
@@ -305,9 +305,9 @@ public class LinksetDocumentTests
         };
 
         // Act
-        document.Linkset.Add(new Link { Href = "https://example.com" });
+        document.Linkset!.Add(new Link { Href = "https://example.com" });
 
         // Assert
-        Assert.Single(document.Linkset);
+        Assert.Single(document.Linkset!);
     }
 }
