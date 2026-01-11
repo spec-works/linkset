@@ -1,6 +1,6 @@
 # Linkset
 
-.NET library for parsing and serializing linkset documents (`application/linkset+json`).
+Software component for parsing and serializing linkset documents (`application/linkset+json`).
 
 ## Specification
 
@@ -8,9 +8,9 @@ Implements [RFC 9264](https://www.rfc-editor.org/rfc/rfc9264.html) - Linkset: Me
 
 See [specs.json](specs.json) for complete specification references.
 
-## Implementation
+## Implementations
 
-- [.NET](dotnet/README.md) - Full documentation, API reference, and examples
+- [.NET](dotnet/README.md) - Library
 
 ## License
 
