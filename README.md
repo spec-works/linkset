@@ -1,4 +1,6 @@
 # Linkset
+[![Registry](https://img.shields.io/badge/Registry-SpecWorks-blue)](https://spec-works.github.io/registry/parts/linkset/)
+
 
 Software component for parsing and serializing linkset documents (`application/linkset+json`).
 

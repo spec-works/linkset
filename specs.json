@@ -17,6 +17,11 @@
       "type": "text/html",
       "rel": "related",
       "title": "IANA Media Type Registration for application/linkset+json"
+    },
+    {
+      "rel": "registry",
+      "title": "Part registry entry",
+      "href": "https://spec-works.github.io/registry/parts/linkset/"
     }
   ]
 }
