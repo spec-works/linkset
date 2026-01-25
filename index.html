@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Linkset Documentation | Linkset Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Linkset Documentation | Linkset Documentation ">
+      
+      
+      <link rel="icon" href="images/logo.svg">
+      <link rel="stylesheet" href="public/docfx.min.css">
+      <link rel="stylesheet" href="public/main.css">
+      <meta name="docfx:navrel" content="toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/spec-works/linkset/blob/main/docs/index.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="index.html">
+            <img id="logo" class="svg" src="images/logo.svg" alt="Linkset">
+            Linkset
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="linkset-documentation">Linkset Documentation</h1>
+
+<p>Parse and serialize linkset documents according to <a href="https://www.rfc-editor.org/rfc/rfc9264">RFC 9264</a> and <a href="https://www.rfc-editor.org/rfc/rfc8288">RFC 8288</a>.</p>
+<h2 id="what-is-linkset">What is Linkset?</h2>
+<p>Linkset is a .NET library that provides support for parsing and serializing linkset documents. Linksets are structured collections of web links that can be represented in JSON format, enabling efficient discovery and processing of link relationships between web resources.</p>
+<h2 id="installation">Installation</h2>
+<p>Install via NuGet:</p>
+<pre><code class="lang-bash">dotnet add package SpecWorks.Linkset
+</code></pre>
+<h2 id="features">Features</h2>
+<ul>
+<li>✅ <strong>RFC 9264 Compliant</strong> - Full implementation of Linkset specification</li>
+<li>✅ <strong>RFC 8288 Compliant</strong> - Web Linking support</li>
+<li>✅ <strong>Parse Linkset Documents</strong> - Parse JSON linkset documents</li>
+<li>✅ <strong>Serialize Linksets</strong> - Generate valid linkset JSON</li>
+<li>✅ <strong>Link Validation</strong> - Validate link structure and relationships</li>
+<li>✅ <strong>Type-Safe API</strong> - Strong typing with nullable reference types</li>
+<li>✅ <strong>Multi-Target</strong> - Supports .NET 10.0 and .NET 8.0 (LTS)</li>
+</ul>
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="parsing-linkset-documents">Parsing Linkset Documents</h3>
+<pre><code class="lang-csharp">using SpecWorks.Linkset;
+
+// Parse from JSON string
+string linksetJson = @&quot;{
+  &quot;&quot;linkset&quot;&quot;: [
+    {
+      &quot;&quot;anchor&quot;&quot;: &quot;&quot;https://example.com/resource&quot;&quot;,
+      &quot;&quot;item&quot;&quot;: [
+        {
+          &quot;&quot;href&quot;&quot;: &quot;&quot;https://example.com/chapter1&quot;&quot;,
+          &quot;&quot;type&quot;&quot;: &quot;&quot;text/html&quot;&quot;
+        }
+      ]
+    }
+  ]
+}&quot;;
+
+var linksetDocument = LinksetParser.Parse(linksetJson);
+
+// Access linksets
+foreach (var linkset in linksetDocument.Linksets)
+{
+    Console.WriteLine($&quot;Anchor: {linkset.Anchor}&quot;);
+
+    foreach (var link in linkset.Links)
+    {
+        Console.WriteLine($&quot;  Link: {link.Href}&quot;);
+        Console.WriteLine($&quot;  Relation: {link.Relation}&quot;);
+        Console.WriteLine($&quot;  Type: {link.Type}&quot;);
+    }
+}
+</code></pre>
+<h3 id="creating-linkset-documents">Creating Linkset Documents</h3>
+<pre><code class="lang-csharp">using SpecWorks.Linkset;
+
+// Create a linkset document
+var linksetDocument = new LinksetDocument();
+
+// Create a linkset with an anchor
+var linkset = new Linkset
+{
+    Anchor = new Uri(&quot;https://example.com/resource&quot;)
+};
+
+// Add links
+linkset.AddLink(new Link
+{
+    Href = new Uri(&quot;https://example.com/chapter1&quot;),
+    Relation = &quot;item&quot;,
+    Type = &quot;text/html&quot;,
+    Title = &quot;Chapter 1&quot;
+});
+
+linkset.AddLink(new Link
+{
+    Href = new Uri(&quot;https://example.com/chapter2&quot;),
+    Relation = &quot;item&quot;,
+    Type = &quot;text/html&quot;,
+    Title = &quot;Chapter 2&quot;
+});
+
+linksetDocument.Linksets.Add(linkset);
+
+// Serialize to JSON
+string json = linksetDocument.ToJson();
+Console.WriteLine(json);
+</code></pre>
+<h3 id="working-with-link-relations">Working with Link Relations</h3>
+<pre><code class="lang-csharp">using SpecWorks.Linkset;
+
+var linksetDocument = LinksetParser.Parse(linksetJson);
+
+// Find links by relation type
+var itemLinks = linksetDocument
+    .GetLinksByRelation(&quot;item&quot;)
+    .ToList();
+
+foreach (var link in itemLinks)
+{
+    Console.WriteLine($&quot;Item: {link.Href}&quot;);
+}
+
+// Find links by anchor
+var anchorLinks = linksetDocument
+    .GetLinksByAnchor(new Uri(&quot;https://example.com/resource&quot;))
+    .ToList();
+</code></pre>
+<h2 id="use-cases">Use Cases</h2>
+<h3 id="resource-discovery">Resource Discovery</h3>
+<p>Enable discovery of related resources:</p>
+<pre><code class="lang-csharp">// Parse linkset from HTTP response
+var response = await httpClient.GetAsync(&quot;/linkset&quot;);
+var linksetJson = await response.Content.ReadAsStringAsync();
+var linkset = LinksetParser.Parse(linksetJson);
+
+// Discover related resources
+var relatedResources = linkset
+    .GetLinksByRelation(&quot;related&quot;)
+    .Select(link =&gt; link.Href)
+    .ToList();
+</code></pre>
+<h3 id="navigation-structures">Navigation Structures</h3>
+<p>Represent navigation hierarchies:</p>
+<pre><code class="lang-csharp">var linkset = new Linkset
+{
+    Anchor = new Uri(&quot;https://example.com/book&quot;)
+};
+
+// Table of contents
+linkset.AddLink(new Link
+{
+    Href = new Uri(&quot;https://example.com/toc&quot;),
+    Relation = &quot;contents&quot;,
+    Type = &quot;text/html&quot;
+});
+
+// Chapters
+for (int i = 1; i &lt;= 10; i++)
+{
+    linkset.AddLink(new Link
+    {
+        Href = new Uri($&quot;https://example.com/chapter{i}&quot;),
+        Relation = &quot;item&quot;,
+        Type = &quot;text/html&quot;,
+        Title = $&quot;Chapter {i}&quot;
+    });
+}
+</code></pre>
+<h3 id="api-link-collections">API Link Collections</h3>
+<p>Provide structured link collections in APIs:</p>
+<pre><code class="lang-csharp">// Create linkset for API response
+var linkset = new Linkset
+{
+    Anchor = new Uri(&quot;https://api.example.com/users/123&quot;)
+};
+
+linkset.AddLink(new Link
+{
+    Href = new Uri(&quot;https://api.example.com/users/123&quot;),
+    Relation = &quot;self&quot;
+});
+
+linkset.AddLink(new Link
+{
+    Href = new Uri(&quot;https://api.example.com/users/123/posts&quot;),
+    Relation = &quot;related&quot;,
+    Title = &quot;User Posts&quot;
+});
+
+linkset.AddLink(new Link
+{
+    Href = new Uri(&quot;https://api.example.com/users/123/profile&quot;),
+    Relation = &quot;alternate&quot;,
+    Type = &quot;text/html&quot;
+});
+
+// Return as part of API response
+return Ok(linkset.ToJson());
+</code></pre>
+<h2 id="api-reference">API Reference</h2>
+<ul>
+<li><a href="api/SpecWorks.Linkset.html">API Documentation</a> - Complete API reference</li>
+</ul>
+<h2 id="specification-compliance">Specification Compliance</h2>
+<p>This library implements:</p>
+<ul>
+<li><a href="https://www.rfc-editor.org/rfc/rfc9264">RFC 9264 - Linkset: Media Types and a Link Relation Type for Link Sets</a></li>
+<li><a href="https://www.rfc-editor.org/rfc/rfc8288">RFC 8288 - Web Linking</a></li>
+</ul>
+<h3 id="supported-features">Supported Features</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>RFC Section</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linkset JSON Format</td>
+<td>RFC 9264, Section 4.2</td>
+<td>✅ Supported</td>
+</tr>
+<tr>
+<td>Link Target Attributes</td>
+<td>RFC 8288, Section 3.4</td>
+<td>✅ Supported</td>
+</tr>
+<tr>
+<td>Link Context</td>
+<td>RFC 8288, Section 3.2</td>
+<td>✅ Supported</td>
+</tr>
+<tr>
+<td>Link Relations</td>
+<td>RFC 8288, Section 3.3</td>
+<td>✅ Supported</td>
+</tr>
+<tr>
+<td>Extension Relations</td>
+<td>RFC 8288, Section 2.1.2</td>
+<td>✅ Supported</td>
+</tr>
+</tbody>
+</table>
+<h3 id="link-attributes">Link Attributes</h3>
+<p>The library supports all standard link attributes:</p>
+<ul>
+<li><code>href</code> - Link target URI (required)</li>
+<li><code>rel</code> - Link relation type</li>
+<li><code>anchor</code> - Link context URI</li>
+<li><code>type</code> - Media type hint</li>
+<li><code>title</code> - Human-readable title</li>
+<li><code>hreflang</code> - Language of target resource</li>
+<li><code>media</code> - Media query for the link</li>
+</ul>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>.NET 10.0 or .NET 8.0 (LTS)</li>
+<li>C# 10.0 or later</li>
+</ul>
+<h2 id="source-code">Source Code</h2>
+<p>View the source code on <a href="https://github.com/spec-works/linkset">GitHub</a>.</p>
+<h2 id="contributing">Contributing</h2>
+<p>Contributions welcome! See the <a href="https://github.com/spec-works/linkset">repository</a> for:</p>
+<ul>
+<li>Issue tracking</li>
+<li>Pull request guidelines</li>
+<li>Architecture Decision Records (ADRs)</li>
+</ul>
+<h2 id="license">License</h2>
+<p>MIT License - see <a href="https://github.com/spec-works/linkset/blob/main/LICENSE">LICENSE</a> for details.</p>
+<h2 id="links">Links</h2>
+<ul>
+<li><strong>GitHub Repository</strong>: <a href="https://github.com/spec-works/linkset">github.com/spec-works/linkset</a></li>
+<li><strong>RFC 9264</strong>: <a href="https://www.rfc-editor.org/rfc/rfc9264">rfc-editor.org/rfc/rfc9264</a></li>
+<li><strong>RFC 8288</strong>: <a href="https://www.rfc-editor.org/rfc/rfc8288">rfc-editor.org/rfc/rfc8288</a></li>
+<li><strong>SpecWorks Factory</strong>: <a href="https://spec-works.github.io">spec-works.github.io</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/spec-works/linkset/blob/main/docs/index.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <a href='https://spec-works.github.io/'>SpecWorks Factory</a> | <a href='https://github.com/spec-works/linkset'>GitHub</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
