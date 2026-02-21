@@ -1,0 +1,22 @@
+{
+  "linkset": [
+    {
+      "href": "https://example.org/doc/en",
+      "rel": "alternate",
+      "hreflang": "en",
+      "title": "English Version"
+    },
+    {
+      "href": "https://example.org/doc/fr",
+      "rel": "alternate",
+      "hreflang": "fr",
+      "title": "French Version"
+    },
+    {
+      "href": "https://example.org/doc/de",
+      "rel": "alternate",
+      "hreflang": "de",
+      "title": "German Version"
+    }
+  ]
+}

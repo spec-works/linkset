@@ -19,6 +19,18 @@
       "title": "IANA Media Type Registration for application/linkset+json"
     },
     {
+      "href": "https://github.com/spec-works/linkset/tree/main/testcases",
+      "rel": "https://specworks.org/rels/tests",
+      "type": "text/html",
+      "title": "Shared test cases"
+    },
+    {
+      "href": "https://github.com/spec-works/linkset/actions",
+      "rel": "https://specworks.org/rels/tests",
+      "type": "text/html",
+      "title": "CI Test Results"
+    },
+    {
       "rel": "registry",
       "title": "Part registry entry",
       "href": "https://spec-works.github.io/registry/parts/linkset/"

@@ -1,0 +1,16 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://example.org/resource",
+      "href": "https://example.org/resource/description",
+      "rel": "describedby",
+      "type": "text/html"
+    },
+    {
+      "anchor": "https://example.org/resource",
+      "href": "https://example.org/resource/metadata",
+      "rel": "describedby",
+      "type": "application/rdf+xml"
+    }
+  ]
+}
