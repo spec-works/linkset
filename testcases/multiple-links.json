@@ -1,0 +1,22 @@
+{
+  "linkset": [
+    {
+      "href": "https://example.com/spec",
+      "rel": "describedby",
+      "type": "text/html",
+      "title": "Specification Document"
+    },
+    {
+      "href": "https://example.com/related",
+      "rel": "related",
+      "type": "application/json",
+      "title": "Related Resource"
+    },
+    {
+      "href": "https://example.com/alt",
+      "rel": "alternate",
+      "type": "application/pdf",
+      "title": "PDF Version"
+    }
+  ]
+}

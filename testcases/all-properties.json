@@ -1,0 +1,13 @@
+{
+  "linkset": [
+    {
+      "href": "https://example.com/doc.pdf",
+      "rel": "describedby",
+      "anchor": "https://example.com/context",
+      "type": "application/pdf",
+      "hreflang": "en",
+      "title": "Example Document",
+      "length": 12345
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "linkset": [
+    {
+      "href": "https://example.com",
+      "rel": "describedby",
+      "type": "text/html",
+      "title": "Example Link"
+    }
+  ]
+}
