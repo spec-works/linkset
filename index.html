@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Linkset - Application/Linkset+JSON Parser for C# | Linkset Documentation </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Linkset - Application/Linkset+JSON Parser for C# | Linkset Documentation ">
+      
+      
+      <link rel="icon" href="images/logo.svg">
+      <link rel="stylesheet" href="public/docfx.min.css">
+      <link rel="stylesheet" href="public/main.css">
+      <meta name="docfx:navrel" content="toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/spec-works/linkset/blob/main/docs/index.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="index.html">
+            <img id="logo" class="svg" src="images/logo.svg" alt="Linkset">
+            Linkset
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="linkset---applicationlinksetjson-parser-for-c">Linkset - Application/Linkset+JSON Parser for C#</h1>
+
+<p>A C# library for parsing and serializing <code>application/linkset+json</code> documents as defined in <a href="https://www.rfc-editor.org/rfc/rfc9264.html">RFC 9264</a>.</p>
+<h2 id="overview">Overview</h2>
+<p>This library provides a complete implementation for working with linkset documents, which are JSON-formatted collections of web links. Linksets are useful for representing relationships between web resources, API documentation, specifications, and more.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li>✅ <strong>RFC 9264 Compliant</strong>: Full support for the linkset media type specification</li>
+<li>✅ <strong>RFC 8288 Web Linking</strong>: Supports all standard link attributes</li>
+<li>✅ <strong>Type-Safe Models</strong>: Strongly-typed classes for linkset documents and links</li>
+<li>✅ <strong>Async Support</strong>: Async methods for parsing and serializing streams</li>
+<li>✅ <strong>Validation</strong>: Comprehensive validation of linkset structure and URIs</li>
+<li>✅ <strong>Query Helpers</strong>: Convenient methods to filter and query links</li>
+<li>✅ <strong>Extension Data</strong>: Preserves custom properties not defined in the standard</li>
+<li>✅ <strong>Well-Tested</strong>: 55+ tests covering all functionality</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<pre><code class="lang-bash"># Build the library
+dotnet build src/Linkset/Linkset.csproj
+
+# Run tests
+dotnet test
+</code></pre>
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="parsing-a-linkset">Parsing a Linkset</h3>
+<pre><code class="lang-csharp">using Linkset;
+
+var json = @&quot;{
+    &quot;&quot;linkset&quot;&quot;: [
+        {
+            &quot;&quot;href&quot;&quot;: &quot;&quot;https://www.rfc-editor.org/rfc/rfc9264.html&quot;&quot;,
+            &quot;&quot;rel&quot;&quot;: &quot;&quot;describedby&quot;&quot;,
+            &quot;&quot;type&quot;&quot;: &quot;&quot;text/html&quot;&quot;,
+            &quot;&quot;title&quot;&quot;: &quot;&quot;Linkset Specification&quot;&quot;
+        },
+        {
+            &quot;&quot;href&quot;&quot;: &quot;&quot;https://example.org/api/docs&quot;&quot;,
+            &quot;&quot;rel&quot;&quot;: &quot;&quot;related&quot;&quot;,
+            &quot;&quot;type&quot;&quot;: &quot;&quot;text/html&quot;&quot;
+        }
+    ]
+}&quot;;
+
+var parser = new LinksetParser();
+var document = parser.Parse(json);
+
+// Access links
+Console.WriteLine($&quot;Total links: {document.Linkset.Count}&quot;);
+
+foreach (var link in document.Linkset)
+{
+    Console.WriteLine($&quot;{link.Rel}: {link.Href}&quot;);
+}
+</code></pre>
+<h3 id="creating-and-serializing-a-linkset">Creating and Serializing a Linkset</h3>
+<pre><code class="lang-csharp">var document = new LinksetDocument
+{
+    Linkset = new List&lt;Link&gt;
+    {
+        new Link
+        {
+            Href = &quot;https://www.rfc-editor.org/rfc/rfc9264.html&quot;,
+            Rel = &quot;describedby&quot;,
+            Type = &quot;text/html&quot;,
+            Title = &quot;Linkset: Media Types and a Link Relation Type for Link Sets&quot;
+        },
+        new Link
+        {
+            Href = &quot;https://www.rfc-editor.org/rfc/rfc8288.html&quot;,
+            Rel = &quot;describedby&quot;,
+            Type = &quot;text/html&quot;,
+            Title = &quot;Web Linking&quot;
+        }
+    ]
+};
+
+var parser = new LinksetParser();
+var json = parser.Serialize(document);
+
+Console.WriteLine(json);
+</code></pre>
+<h3 id="query-helpers">Query Helpers</h3>
+<pre><code class="lang-csharp">// Get all links with a specific relation type
+var describedByLinks = document.GetLinksByRel(&quot;describedby&quot;);
+
+// Get the first link with a specific relation type
+var firstRelated = document.GetFirstLinkByRel(&quot;related&quot;);
+
+// Get all links with a specific media type
+var htmlLinks = document.GetLinksByType(&quot;text/html&quot;);
+
+// Get all distinct relation types
+var allRelations = document.GetAllRelationTypes();
+</code></pre>
+<h3 id="async-parsing-and-serialization">Async Parsing and Serialization</h3>
+<pre><code class="lang-csharp">// Parse from stream
+using var fileStream = File.OpenRead(&quot;specs.json&quot;);
+var document = await parser.ParseAsync(fileStream);
+
+// Serialize to stream
+using var outputStream = File.Create(&quot;output.json&quot;);
+await parser.SerializeAsync(document, outputStream);
+</code></pre>
+<h2 id="link-properties">Link Properties</h2>
+<p>The <code>Link</code> class supports all standard properties from RFC 8288:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Href</code></td>
+<td>string</td>
+<td>Target URI (required)</td>
+</tr>
+<tr>
+<td><code>Rel</code></td>
+<td>string?</td>
+<td>Link relation type</td>
+</tr>
+<tr>
+<td><code>Anchor</code></td>
+<td>string?</td>
+<td>Context URI</td>
+</tr>
+<tr>
+<td><code>Type</code></td>
+<td>string?</td>
+<td>Media type of the target</td>
+</tr>
+<tr>
+<td><code>Hreflang</code></td>
+<td>string?</td>
+<td>Language of the target</td>
+</tr>
+<tr>
+<td><code>Title</code></td>
+<td>string?</td>
+<td>Human-readable title</td>
+</tr>
+<tr>
+<td><code>Length</code></td>
+<td>long?</td>
+<td>Content length in bytes</td>
+</tr>
+<tr>
+<td><code>ExtensionData</code></td>
+<td>Dictionary?</td>
+<td>Custom properties</td>
+</tr>
+</tbody>
+</table>
+<h2 id="validation">Validation</h2>
+<p>The parser validates:</p>
+<ul>
+<li>✅ Required <code>linkset</code> array is present</li>
+<li>✅ Each link has a required <code>href</code> property</li>
+<li>✅ <code>href</code> values are valid URIs (absolute or relative)</li>
+<li>✅ Well-formed absolute URIs</li>
+<li>✅ No malformed URI patterns</li>
+</ul>
+<p>Invalid linksets throw <code>LinksetParseException</code> with detailed error messages.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="specification-references-like-this-projects-specsjson">Specification References (like this project's specs.json)</h3>
+<pre><code class="lang-csharp">var specs = new LinksetDocument
+{
+    Linkset = new List&lt;Link&gt;
+    {
+        new Link
+        {
+            Href = &quot;https://www.rfc-editor.org/rfc/rfc9264.html&quot;,
+            Type = &quot;text/html&quot;,
+            Rel = &quot;describedby&quot;,
+            Title = &quot;Linkset: Media Types and a Link Relation Type for Link Sets&quot;
+        },
+        new Link
+        {
+            Href = &quot;https://www.rfc-editor.org/rfc/rfc8288.html&quot;,
+            Type = &quot;text/html&quot;,
+            Rel = &quot;describedby&quot;,
+            Title = &quot;Web Linking&quot;
+        },
+        new Link
+        {
+            Href = &quot;https://www.iana.org/assignments/media-types/application/linkset+json&quot;,
+            Type = &quot;text/html&quot;,
+            Rel = &quot;related&quot;,
+            Title = &quot;IANA Media Type Registration&quot;
+        }
+    }
+};
+
+var json = parser.Serialize(specs);
+File.WriteAllText(&quot;specs.json&quot;, json);
+</code></pre>
+<h3 id="multi-language-alternatives">Multi-Language Alternatives</h3>
+<pre><code class="lang-csharp">var document = new LinksetDocument
+{
+    Linkset = new List&lt;Link&gt;
+    {
+        new Link
+        {
+            Href = &quot;https://example.org/doc/en&quot;,
+            Rel = &quot;alternate&quot;,
+            Hreflang = &quot;en&quot;,
+            Title = &quot;English Version&quot;
+        },
+        new Link
+        {
+            Href = &quot;https://example.org/doc/fr&quot;,
+            Rel = &quot;alternate&quot;,
+            Hreflang = &quot;fr&quot;,
+            Title = &quot;French Version&quot;
+        }
+    }
+};
+</code></pre>
+<h3 id="links-with-anchors-context">Links with Anchors (Context)</h3>
+<pre><code class="lang-csharp">var document = new LinksetDocument
+{
+    Linkset = new List&lt;Link&gt;
+    {
+        new Link
+        {
+            Anchor = &quot;https://example.org/resource&quot;,
+            Href = &quot;https://example.org/resource/description&quot;,
+            Rel = &quot;describedby&quot;,
+            Type = &quot;text/html&quot;
+        },
+        new Link
+        {
+            Anchor = &quot;https://example.org/resource&quot;,
+            Href = &quot;https://example.org/resource/metadata&quot;,
+            Rel = &quot;describedby&quot;,
+            Type = &quot;application/rdf+xml&quot;
+        }
+    }
+};
+</code></pre>
+<h2 id="error-handling">Error Handling</h2>
+<pre><code class="lang-csharp">try
+{
+    var document = parser.Parse(json);
+}
+catch (ArgumentNullException ex)
+{
+    // JSON was null or empty
+    Console.WriteLine($&quot;Invalid input: {ex.Message}&quot;);
+}
+catch (LinksetParseException ex)
+{
+    // Linkset structure is invalid
+    Console.WriteLine($&quot;Parse error: {ex.Message}&quot;);
+}
+catch (JsonException ex)
+{
+    // JSON syntax error
+    Console.WriteLine($&quot;JSON error: {ex.Message}&quot;);
+}
+</code></pre>
+<h2 id="parser-options">Parser Options</h2>
+<p>Customize JSON parsing behavior:</p>
+<pre><code class="lang-csharp">var options = new JsonSerializerOptions
+{
+    PropertyNameCaseInsensitive = true,
+    AllowTrailingCommas = true,
+    ReadCommentHandling = JsonCommentHandling.Skip
+};
+
+var parser = new LinksetParser(options);
+</code></pre>
+<h2 id="project-structure">Project Structure</h2>
+<pre><code>Linkset/
+├── src/
+│   └── Linkset/
+│       ├── Link.cs                    # Link model
+│       ├── LinksetDocument.cs         # Document model with query helpers
+│       ├── LinksetParser.cs           # Parser and serializer
+│       └── LinksetParseException.cs   # Custom exception
+└── tests/
+    └── Linkset.Tests/
+        ├── LinksetParserTests.cs      # Parser tests (25 tests)
+        ├── LinksetSerializationTests.cs # Serialization tests (13 tests)
+        ├── LinksetDocumentTests.cs    # Query helper tests (17 tests)
+        └── RealWorldExamplesTests.cs  # Real-world examples (10 tests)
+</code></pre>
+<h2 id="specification-compliance">Specification Compliance</h2>
+<p>This implementation follows:</p>
+<ul>
+<li>✅ <a href="https://www.rfc-editor.org/rfc/rfc9264.html">RFC 9264</a> - Linkset: Media Types and a Link Relation Type for Link Sets</li>
+<li>✅ <a href="https://www.rfc-editor.org/rfc/rfc8288.html">RFC 8288</a> - Web Linking</li>
+</ul>
+<h2 id="testing">Testing</h2>
+<p>Run all tests:</p>
+<pre><code class="lang-bash">dotnet test
+</code></pre>
+<p>Run specific test classes:</p>
+<pre><code class="lang-bash">dotnet test --filter &quot;FullyQualifiedName~LinksetParserTests&quot;
+dotnet test --filter &quot;FullyQualifiedName~RealWorldExamplesTests&quot;
+</code></pre>
+<h2 id="use-cases">Use Cases</h2>
+<ul>
+<li><strong>API Documentation</strong>: Link to specification documents and related resources</li>
+<li><strong>Specification References</strong>: Document dependencies between standards (like this project)</li>
+<li><strong>Content Negotiation</strong>: Provide alternative representations of resources</li>
+<li><strong>Resource Discovery</strong>: Describe relationships between web resources</li>
+<li><strong>Metadata Exchange</strong>: Share structured link information between systems</li>
+</ul>
+<h2 id="license">License</h2>
+<p>This implementation is provided as-is for use in your projects.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://www.rfc-editor.org/rfc/rfc9264.html">RFC 9264 - Linkset</a></li>
+<li><a href="https://www.rfc-editor.org/rfc/rfc8288.html">RFC 8288 - Web Linking</a></li>
+<li><a href="https://www.iana.org/assignments/media-types/application/linkset+json">IANA Media Type Registration</a></li>
+</ul>
+<h2 id="api-reference">API Reference</h2>
+<ul>
+<li><a href="api/SpecWorks.Linkset.html">API Documentation</a> - Complete API reference</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/spec-works/linkset/blob/main/docs/index.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <a href='https://spec-works.github.io/'>SpecWorks Factory</a> | <a href='https://github.com/spec-works/linkset'>GitHub</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

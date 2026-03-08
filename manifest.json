@@ -1,0 +1,135 @@
+{
+  "source_base_path": "/home/runner/work/linkset/linkset/docs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Linkset.Link.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Linkset.Link.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Linkset.Link",
+      "Summary": "<p sourcefile=\"api/Linkset.Link.yml\" sourcestartlinenumber=\"1\">Represents a single link in a linkset as defined in RFC 9264 and RFC 8288.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Linkset.LinksetDocument.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Linkset.LinksetDocument.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Linkset.LinksetDocument",
+      "Summary": "<p sourcefile=\"api/Linkset.LinksetDocument.yml\" sourcestartlinenumber=\"1\">Represents a linkset document as defined in RFC 9264.\nThe document contains an array of Link objects.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Linkset.LinksetParseException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Linkset.LinksetParseException.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Linkset.LinksetParseException",
+      "Summary": "<p sourcefile=\"api/Linkset.LinksetParseException.yml\" sourcestartlinenumber=\"1\">Exception thrown when parsing a linkset document fails.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Linkset.LinksetParser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Linkset.LinksetParser.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Linkset.LinksetParser",
+      "Summary": "<p sourcefile=\"api/Linkset.LinksetParser.yml\" sourcestartlinenumber=\"1\">Parser for application/linkset+json documents as defined in RFC 9264.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Linkset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Linkset.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Linkset",
+      "Summary": null
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/logo.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/logo.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
